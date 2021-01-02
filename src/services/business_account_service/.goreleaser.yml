@@ -1,0 +1,16 @@
+builds:
+  - main: ./cmd/business_account_service_cli
+    binary: business_account_service_cli
+    ldflags: -s -w -X github.com/stefanprodan/business_account_service/pkg/version.REVISION={{.Commit}}
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+    env:
+      - CGO_ENABLED=0
+archives:
+  - name_template: "{{ .Binary }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    files:
+      - none*

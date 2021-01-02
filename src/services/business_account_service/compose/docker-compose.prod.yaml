@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  # business_account_service for the blackspace platform
+  business_account_service:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: business_account_service
+    ports:
+      - "9897:9897"
+      - "9997:9997"
+      - "9797:9797"
+    restart: always
+    networks:
+      - net

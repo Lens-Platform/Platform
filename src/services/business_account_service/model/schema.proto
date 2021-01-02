@@ -1,0 +1,188 @@
+syntax = "proto3";
+
+import "github.com/infobloxopen/protoc-gen-gorm/options/gorm.proto";
+import "github.com/protobuf/src/google/protobuf/timestamp.proto";
+
+option go_package = "model";
+
+message BusinessAccount {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1 [(gorm.field).tag = {type: "serial" primary_key: true, auto_increment: true}];
+	string companyName = 2;
+	string companyAddress = 3;
+	PhoneNumber phoneNumber = 4;
+	string category = 5;
+	Media media = 6 [(gorm.field).has_one.preload = true];
+	string password = 7;
+	string email = 8;
+	bool isActive = 9;
+	// define the types of businesses available
+	BusinessType typeOfBusiness = 10;
+	// defines business top goals
+	// sell products, market business, sell services, sell memberships, build community
+	repeated string businessGoals = 11;
+	// the stage at which the business is at
+	// collecting inspiration, formalizing an idea or personal project, project or hobby to business,
+	// growing existing business
+	string businessStage = 12;
+	// type of merchant
+	MerchantType merchantType = 13;
+	// processing method details
+	PaymentProcessingMethods paymentDetails = 14;
+	// types of services blackspace can manage on the business' behalf
+	ServicesManagedByBlackspace servicesManagedByBlackspace = 15;
+	// business address
+	Address founderAddress = 16;
+	// Business Interests
+	Topics subscribedTopics = 17 [(gorm.field).has_one.preload = true];
+	// authentication service ref
+	uint32 authnId = 18;
+}
+
+message Topics {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1 [(gorm.field).tag = {type: "serial" primary_key: true, auto_increment: true}];
+	bool Technology = 2;
+	bool Health = 3;
+	bool Food = 4;
+	bool Science = 5;
+	bool Music = 6;
+	bool Travel = 7;
+	bool Business = 8;
+	bool Cooking = 9;
+	bool FashionAndStyle = 10;
+	bool Design = 11;
+	bool Art = 12;
+}
+
+message Media {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1 [(gorm.field).tag = {type: "serial" primary_key: true, auto_increment: true}];
+	string website = 2;
+	string instagram = 3;
+	string facebook = 4;
+	string linkedIn = 5;
+	string pinterest = 6;
+}
+
+
+message Address {
+	string Address = 1;
+	string ApartmentUnit = 2;
+	string ZipCode = 3;
+	string City = 4;
+	string State = 5;
+	DateOfBirth birthdate = 6;
+}
+
+message DateOfBirth {
+	string Month = 1;
+	string Day = 2;
+	string Year = 3;
+}
+
+message ServicesManagedByBlackspace {
+	// create items or services to speed up checkout and enhance reports
+	bool ItemCatalog = 1;
+	// sell gift cards in store or online to boost sales
+	bool GiftCards = 2;
+	// provide discounts to boost visibility and sales
+	bool Discounts = 3;
+	// email your customers to tell them about promotions or special events
+	bool MarketingCampaigns = 4;
+	// keep your customers coming back with customized rewards program
+	bool LoyaltyProgram = 5;
+	// get access to financing by running your business on blackspace
+	bool FundingYourBusiness = 6;
+	// access analytics (indepth) data on buying trends
+	bool Analytics = 7;
+}
+
+message PaymentProcessingMethods {
+	repeated PaymentOptions paymentOptions = 1;
+	repeated PaymentMedium medium = 2;
+}
+
+message PaymentMedium {
+	bool MobilePhone = 1;
+	bool Tablet = 2;
+	bool Computer = 3;
+}
+
+message PaymentOptions {
+	bool BrickAndMortar = 1;
+	bool OnTheGo = 2;
+	bool Online = 3;
+	bool ThroughInvoices = 4;
+}
+
+message BusinessType {
+	BusinessCategory category = 1;
+	BusinessSubCategory subCategory = 2;
+}
+
+message BusinessCategory {
+	bool Tech = 1;
+	bool CharitiesEducationMembership = 2;
+	bool FoodAndDrink = 3;
+	bool HealthCareAndFitness = 4;
+	bool HomeAndRepair = 5;
+	bool LeisureAndEntertainment = 6;
+	bool ProfessionalServices = 7;
+	bool Retail = 8;
+	bool Transportation = 9;
+	bool BeautyAndPersonalCare = 10;
+}
+
+message BusinessSubCategory {
+	// art, marketing, travel, interior design, music, technology, food, restaurants, politics, health & beauty,
+	// design, non-profit, jewelry, gaming, magazine, photography, fitness, consulting, fashion, services
+	bool Marketing = 1;
+	bool Travel = 2;
+	bool Interior_Design = 3;
+	bool Music = 4;
+	bool Technology = 5;
+	bool Food = 6;
+	bool Restaurants = 7;
+	bool Polictics = 8;
+	bool Health_And_Beauty = 9;
+	bool Design = 10;
+	bool Non_Profit = 11;
+	bool Jewelry = 12;
+	bool Gaming = 13;
+	bool Magazine = 14;
+	bool Photography = 15;
+	bool Fitenss = 16;
+	bool Consulting = 17;
+	bool Fashion = 18;
+	bool Services = 19;
+	bool Art = 20;
+}
+
+message MerchantType {
+	bool SoleProprietor = 1;
+	bool SideProject = 2;
+	bool CasualUse = 3;
+	bool LLCCorporation = 4;
+	bool Partnership = 5;
+	bool Charity = 6;
+	bool ReligiousOrganization = 7;
+	bool OnePersonBusiness  = 8;
+}
+
+message PhoneNumber {
+	string number = 1;
+	PhoneType type = 2;
+}
+
+message PhoneType {
+	bool home = 1;
+	bool work = 2;
+	bool mobile = 3;
+}

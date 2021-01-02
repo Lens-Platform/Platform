@@ -1,0 +1,136 @@
+type BusinessAccount {
+  id: Int
+  companyName: String
+  companyAddress: String
+  phoneNumber: PhoneNumber
+  category: String
+  media: Media
+  password: String
+  email: String
+  isActive: Boolean
+  typeOfBusiness: BusinessType
+  businessGoals: [String]
+  businessStage: String
+  merchantType: MerchantType
+  paymentDetails: PaymentProcessingMethods
+  servicesManagedByBlackspace: ServicesManagedByBlackspace
+  founderAddress: Address
+  subscribedTopics: Topics
+  authnId: Int
+}
+type Topics {
+  id: Int
+  Technology: Boolean
+  Health: Boolean
+  Food: Boolean
+  Science: Boolean
+  Music: Boolean
+  Travel: Boolean
+  Business: Boolean
+  Cooking: Boolean
+  FashionAndStyle: Boolean
+  Design: Boolean
+  Art: Boolean
+}
+type Media {
+  id: Int
+  website: String
+  instagram: String
+  facebook: String
+  linkedIn: String
+  pinterest: String
+}
+type Address {
+  Address: String
+  ApartmentUnit: String
+  ZipCode: String
+  City: String
+  State: String
+  birthdate: DateOfBirth
+}
+type DateOfBirth {
+  Month: String
+  Day: String
+  Year: String
+}
+type ServicesManagedByBlackspace {
+  ItemCatalog: Boolean
+  GiftCards: Boolean
+  Discounts: Boolean
+  MarketingCampaigns: Boolean
+  LoyaltyProgram: Boolean
+  FundingYourBusiness: Boolean
+  Analytics: Boolean
+}
+type PaymentProcessingMethods {
+  paymentOptions: [PaymentOptions]
+  medium: [PaymentMedium]
+}
+type PaymentMedium {
+  MobilePhone: Boolean
+  Tablet: Boolean
+  Computer: Boolean
+}
+type PaymentOptions {
+  BrickAndMortar: Boolean
+  OnTheGo: Boolean
+  Online: Boolean
+  ThroughInvoices: Boolean
+}
+type BusinessType {
+  category: BusinessCategory
+  subCategory: BusinessSubCategory
+}
+type BusinessCategory {
+  Tech: Boolean
+  CharitiesEducationMembership: Boolean
+  FoodAndDrink: Boolean
+  HealthCareAndFitness: Boolean
+  HomeAndRepair: Boolean
+  LeisureAndEntertainment: Boolean
+  ProfessionalServices: Boolean
+  Retail: Boolean
+  Transportation: Boolean
+  BeautyAndPersonalCare: Boolean
+}
+type BusinessSubCategory {
+  Marketing: Boolean
+  Travel: Boolean
+  Interior_Design: Boolean
+  Music: Boolean
+  Technology: Boolean
+  Food: Boolean
+  Restaurants: Boolean
+  Polictics: Boolean
+  Health_And_Beauty: Boolean
+  Design: Boolean
+  Non_Profit: Boolean
+  Jewelry: Boolean
+  Gaming: Boolean
+  Magazine: Boolean
+  Photography: Boolean
+  Fitenss: Boolean
+  Consulting: Boolean
+  Fashion: Boolean
+  Services: Boolean
+  Art: Boolean
+}
+type MerchantType {
+  SoleProprietor: Boolean
+  SideProject: Boolean
+  CasualUse: Boolean
+  LLCCorporation: Boolean
+  Partnership: Boolean
+  Charity: Boolean
+  ReligiousOrganization: Boolean
+  OnePersonBusiness: Boolean
+}
+type PhoneNumber {
+  number: String
+  type: PhoneType
+}
+type PhoneType {
+  home: Boolean
+  work: Boolean
+  mobile: Boolean
+}

@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  # business_account_service for the blackspace platform
+  business_account_service:
+    build:
+      context: ..
+      dockerfile: Dockerfile.dev
+    container_name: business_account_service
+    ports:
+      - "9897:9897"
+    restart: unless-stopped
+    networks:
+      - net
+    volumes:
+      - '..:/go/src/github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service'
+    depends_on:
+      - business_account_service_db
+
+networks:
+  net:
+    driver: bridge
+
+volumes:
+  postgres:

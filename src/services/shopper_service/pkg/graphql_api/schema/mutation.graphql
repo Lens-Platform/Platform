@@ -1,0 +1,13 @@
+input ShopperAccountMutation {
+	shopperAccount: ShopperAccountInput
+	authnId: ID
+}
+
+type Mutation {
+	# creates a shopper account
+	CreateShopperAccount(input: ShopperAccountMutation): ShopperAccountResponse
+	# deletes a shopper account
+	DeleteShopperAccount(id: Int): OperationResponse
+	# updates a shopper account
+	UpdateShopperAccount(id: Int, input: ShopperAccountMutation): ShopperAccountResponse
+}

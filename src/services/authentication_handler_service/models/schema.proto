@@ -1,0 +1,9 @@
+syntax = "proto3";
+import "model/graphql.model";
+import "model/common.model";
+import "github.com/infobloxopen/protoc-gen-gorm/options/gorm.proto";
+import "github.com/mwitkow/go-model-validators/validator.proto";
+import "github.com/protobuf/src/google/protobuf/timestamp.proto";
+
+option go_package = "model";
+option (graphqlproto.graphql) = true;

@@ -1,0 +1,64 @@
+on: push
+name: Business Account Service
+jobs:
+  checks:
+    name: Business Account Service CI Workflow
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./src/services/business_account_service
+    steps:
+      - name: Restore Go cache
+        uses: actions/cache@v1
+        with:
+          path: ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: ${{ runner.os }}-go-
+      - name: Checkout Development Branch
+        uses: actions/checkout@v2
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.15.x
+      - name: Validate Helm chart
+        uses: stefanprodan/kube-tools@v1
+        continue-on-error: true
+        with:
+          command: |
+            ls -al
+            helmv3 template ./src/services/business_account_service/charts/business_account_service | kubeval --strict
+      - name: Validate Kustomization
+        uses: stefanprodan/kube-tools@v1
+        continue-on-error: true
+        with:
+          command: |
+            kustomize build ./src/services/business_account_service/kustomize | kubeval --strict
+            kustomize build ./src/services/business_account_service/kustomize | conftest test -p .github/policy -
+      - name: Format Code
+        uses: Jerome1337/gofmt-action@v1.0.4
+        continue-on-error: true
+        with:
+          gofmt-path: './src/services/business_account_service'
+          gofmt-flags: '-l -d'
+      - name: Build code base
+        working-directory: ./src/services/business_account_service
+        run: make build
+      - name: Build Helm Charts
+        continue-on-error: true
+        working-directory: ./src/services/business_account_service
+        run: make build-charts
+      - name: Run Integration & Unit Test Cases
+        working-directory: ./src/services/business_account_service
+        continue-on-error: true
+        run: make test-suite
+      - name: Build Docker Container
+        working-directory: ./src/services/business_account_service
+        run: make build-container
+      - name: Docker Build And Push
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+          docker build . --file Dockerfile --tag blackspaceinc/business_account_service:dev
+          docker push blackspaceinc/business_account_service:dev

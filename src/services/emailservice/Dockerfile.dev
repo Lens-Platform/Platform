@@ -1,0 +1,15 @@
+FROM golang
+
+RUN mkdir -p /go/src/github.com/BlackspaceInc/email-service
+RUN mkdir -p /go/src/github.com/BlackspaceInc/Backend/common
+
+ADD ./email-service/* /go/src/github.com/BlackspaceInc/email-service/
+ADD ./common/* /go/src/github.com/BlackspaceInc/Backend/common/
+
+WORKDIR /go/src/github.com/BlackspaceInc/email-service
+
+RUN go mod download
+RUN go get github.com/canthefason/go-watcher
+RUN go install github.com/canthefason/go-watcher/cmd/watcher
+
+ENTRYPOINT watcher -run /go/src/github.com/BlackspaceInc/email-service/cmd/podinfo -watch github.com/BlackspaceInc/email-service

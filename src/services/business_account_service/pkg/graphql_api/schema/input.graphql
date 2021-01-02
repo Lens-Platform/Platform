@@ -1,0 +1,132 @@
+input BusinessAccountInput {
+	companyName: String
+	companyAddress: String
+	phoneNumber: PhoneNumberInput
+	category: String
+	media: MediaInput
+	password: String
+	email: String
+	isActive: Boolean
+	typeOfBusiness: BusinessTypeInput
+	businessGoals: [String]
+	businessStage: String
+	merchantType: MerchantTypeInput
+	paymentDetails: PaymentProcessingMethodsInput
+	servicesManagedByBlackspace: ServicesManagedByBlackspaceInput
+	founderAddress: AddressInput
+	subscribedTopics: TopicsInput
+}
+input TopicsInput {
+	Technology: Boolean
+	Health: Boolean
+	Food: Boolean
+	Science: Boolean
+	Music: Boolean
+	Travel: Boolean
+	Business: Boolean
+	Cooking: Boolean
+	FashionAndStyle: Boolean
+	Design: Boolean
+	Art: Boolean
+}
+input MediaInput {
+	website: String
+	instagram: String
+	facebook: String
+	linkedIn: String
+	pinterest: String
+}
+input AddressInput {
+	Address: String
+	ApartmentUnit: String
+	ZipCode: String
+	City: String
+	State: String
+	birthdate: DateOfBirthInput
+}
+input DateOfBirthInput {
+	Month: String
+	Day: String
+	Year: String
+}
+input ServicesManagedByBlackspaceInput {
+	ItemCatalog: Boolean
+	GiftCards: Boolean
+	Discounts: Boolean
+	MarketingCampaigns: Boolean
+	LoyaltyProgram: Boolean
+	FundingYourBusiness: Boolean
+	Analytics: Boolean
+}
+input PaymentProcessingMethodsInput {
+	paymentOptions: [PaymentOptionsInput]
+	medium: [PaymentMediumInput]
+}
+input PaymentMediumInput {
+	MobilePhone: Boolean
+	Tablet: Boolean
+	Computer: Boolean
+}
+input PaymentOptionsInput {
+	BrickAndMortar: Boolean
+	OnTheGo: Boolean
+	Online: Boolean
+	ThroughInvoices: Boolean
+}
+input BusinessTypeInput {
+	category: BusinessCategoryInput
+	subCategory: BusinessSubCategoryInput
+}
+input BusinessCategoryInput {
+	Tech: Boolean
+	CharitiesEducationMembership: Boolean
+	FoodAndDrink: Boolean
+	HealthCareAndFitness: Boolean
+	HomeAndRepair: Boolean
+	LeisureAndEntertainment: Boolean
+	ProfessionalServices: Boolean
+	Retail: Boolean
+	Transportation: Boolean
+	BeautyAndPersonalCare: Boolean
+}
+input BusinessSubCategoryInput {
+	Marketing: Boolean
+	Travel: Boolean
+	Interior_Design: Boolean
+	Music: Boolean
+	Technology: Boolean
+	Food: Boolean
+	Restaurants: Boolean
+	Polictics: Boolean
+	Health_And_Beauty: Boolean
+	Design: Boolean
+	Non_Profit: Boolean
+	Jewelry: Boolean
+	Gaming: Boolean
+	Magazine: Boolean
+	Photography: Boolean
+	Fitenss: Boolean
+	Consulting: Boolean
+	Fashion: Boolean
+	Services: Boolean
+	Art: Boolean
+}
+input MerchantTypeInput {
+	SoleProprietor: Boolean
+	SideProject: Boolean
+	CasualUse: Boolean
+	LLCCorporation: Boolean
+	Partnership: Boolean
+	Charity: Boolean
+	ReligiousOrganization: Boolean
+	OnePersonBusiness: Boolean
+}
+input PhoneNumberInput {
+	number: String
+	type: PhoneTypeInput
+}
+input PhoneTypeInput {
+	home: Boolean
+	work: Boolean
+	mobile: Boolean
+}

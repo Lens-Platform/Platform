@@ -1,0 +1,16 @@
+version: '3.6'
+services:
+  business_account_service_db:
+    container_name: business_account_service_db
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres:/data/postgres
+    networks:
+      - net

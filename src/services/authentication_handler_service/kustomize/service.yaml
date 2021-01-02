@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentication_handler_service
+spec:
+  type: ClusterIP
+  selector:
+    app: authentication_handler_service
+  ports:
+    - name: http
+      port: 9898
+      protocol: TCP
+      targetPort: http
+    - port: 9999
+      targetPort: grpc
+      protocol: TCP
+      name: grpc

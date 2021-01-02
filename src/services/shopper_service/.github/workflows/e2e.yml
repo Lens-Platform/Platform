@@ -1,0 +1,40 @@
+name: e2e
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  kind-helm:
+    strategy:
+      matrix:
+        helm-version:
+          - 2.16.12
+          - 3.3.4
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Kubernetes
+        uses: engineerd/setup-kind@v0.5.0
+      - name: Build container image
+        run: |
+          ./hack/build.sh
+          kind load docker-image test/shopper_service:latest
+      - name: Setup Helm
+        uses: ./.github/actions/helm
+        with:
+          helm-version: ${{ matrix.helm-version }}
+      - name: Install Tiller
+        if: ${{ startsWith(matrix.helm-version, '2') }}
+        run: ./hack/tiller.sh
+      - name: Deploy
+        run: ./hack/deploy.sh
+      - name: Run integration tests
+        run: ./hack/test.sh
+      - name: Debug failure
+        if: failure()
+        run: |
+          kubectl logs -l app=shopper_service || true

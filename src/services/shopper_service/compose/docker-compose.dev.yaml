@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  # service for the blackspace platform
+  shopper_service:
+    build:
+      context: ..
+      dockerfile: ./Dockerfile.dev
+    container_name: shopper_service
+    ports:
+      - "9896:9896"
+      - "9996:9996"
+      - "9796:9796"
+    restart: unless-stopped
+    networks:
+      - net
+    volumes:
+      - '..:/go/src/github.com/BlackspaceInc/BlackspacePlatform/src/services/shopper_service'

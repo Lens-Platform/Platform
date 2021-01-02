@@ -1,0 +1,17 @@
+{{- if .Values.redis.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "authentication_handler_service.fullname" . }}-redis
+  labels:
+    app: {{ template "authentication_handler_service.fullname" . }}-redis
+spec:
+  type: ClusterIP
+  selector:
+    app: {{ template "authentication_handler_service.fullname" . }}-redis
+  ports:
+    - name: redis
+      port: 6379
+      protocol: TCP
+      targetPort: redis
+{{- end }}

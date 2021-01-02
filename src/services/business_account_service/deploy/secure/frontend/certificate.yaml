@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: business_account_service-frontend
+  namespace: secure
+spec:
+  dnsNames:
+    - frontend
+    - frontend.secure
+    - frontend.secure.cluster.local
+    - localhost
+  secretName: business_account_service-frontend-tls
+  issuerRef:
+    name: self-signed
+    kind: ClusterIssuer

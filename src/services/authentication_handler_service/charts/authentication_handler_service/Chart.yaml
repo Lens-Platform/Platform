@@ -1,0 +1,12 @@
+apiVersion: v1
+version: 5.0.3
+appVersion: 5.0.3
+name: authentication_handler_service
+engine: gotpl
+description: authentication_handler_service Helm chart for Kubernetes
+home: https://github.com/blackspaceInc/BlackspacePlatform/src/services/authentication_handler_service
+maintainers:
+- email: authentication_handler_service@users.noreply.github.com
+  name: Yoan Yomba
+sources:
+- https://github.com/blackspaceInc/BlackspacePlatform/src/services/authentication_handler_service

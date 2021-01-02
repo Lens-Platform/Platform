@@ -1,0 +1,14 @@
+version: '3.7'
+
+services:
+  # authentication_handler_service for the blackspace platform
+  authentication_handler_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: authentication_handler_service
+    ports:
+      - "9898:9898"
+      - "9999:9999"
+      - "9797:9797"
+    restart: always

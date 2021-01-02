@@ -1,0 +1,106 @@
+syntax = "proto3";
+import "github.com/infobloxopen/protoc-gen-gorm/options/gorm.proto";
+
+option go_package = "model";
+
+message ShopperAccount {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1;
+	string firstName = 2;
+	string lastName = 3;
+	string email = 4;
+	string username = 5;
+	string phone = 6;
+	bool isActive = 7;
+	// wether the customer accepts marketing emails at the email provided
+	bool acceptsMarketing = 8;
+	// time at which the customer has agreed to accept marketing material
+	string acceptedMarketingAt = 9;
+	// list of addresses associated with the customer
+	repeated Address addresses = 10;
+	// list of tags associated with the customer
+	repeated string tags = 11;
+	// list of causes the customer cares about
+	repeated SubscribedTopic causes = 12;
+	CreditCard creditCard = 13;
+	// topics of interest to the shopper
+	repeated SubscribedTopic subscribedTopics = 14;
+	uint32 authnId = 15;
+	string password = 16;
+}
+
+message CreditCard {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1;
+	string cardNumber = 2;
+	string cardBrand = 3;
+	bool expiresSoon = 4;
+	int64 expirationMonth = 5;
+	int64 expirationYear = 6;
+	// Card bin number
+	string firstDigits = 7;
+	// Card last digits
+	string lastDigits = 8;
+	// Masked card with only 4 digits displayed
+	string maskedNumber = 9;
+	// name of card holder
+	string cardHolderName = 10;
+	Address creditCardBillingAddress = 11;
+}
+
+message Address {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1;
+	string street = 2;
+	string province = 3;
+	string city = 4;
+	string zipCode = 5;
+	string country = 6;
+	string countryCode = 7;
+	string provinceCode = 8;
+}
+
+message SubscribedTopic {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1;
+	Topic subscribedTopic = 2;
+	string subscribedAt = 3;
+	string description = 4;
+}
+
+message Topic {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1;
+	string name = 2;
+	repeated string tags = 3;
+	Image topicCoverImage = 4;
+}
+
+message Image {
+	option (gorm.opts) = {
+        ormable: true,
+    };
+	uint32 id = 1;
+	ImageMeta metadata = 2;
+	string blobUrl = 3;
+	string altText = 4;
+}
+
+message ImageMeta {
+	int32 width = 1;
+	int32 height = 2;
+	bytes redData = 3;
+	bytes greenData = 4;
+	bytes blueData = 5;
+}
+

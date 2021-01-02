@@ -1,0 +1,19 @@
+admin:
+  port: 9991
+
+namers: []
+storage:
+  kind: io.l5d.inMemory
+  namespaces:
+    default: |
+      /host/authentication_service           => /$/inet/authentication_service/8404;
+      /host/authentication_handler_service  => /$/inet/authentication_handler_service/9898;
+      /grpc               => /host;
+      /svc                => /host/web;
+interfaces:
+  - kind: io.l5d.thriftNameInterpreter
+    ip: 0.0.0.0
+    port: 4100
+  - kind: io.l5d.httpController
+    ip: 0.0.0.0
+    port: 4180

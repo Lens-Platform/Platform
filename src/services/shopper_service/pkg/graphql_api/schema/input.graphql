@@ -1,0 +1,59 @@
+input ShopperAccountInput {
+	firstName: String
+	lastName: String
+	email: String
+	username: String
+	phone: String
+	isActive: Boolean
+	acceptsMarketing: Boolean
+	acceptedMarketingAt: String
+	addresses: [AddressInput]
+	tags: [String]
+	causes: [SubscribedTopicInput]
+	creditCard: CreditCardInput
+	subscribedTopics: [SubscribedTopicInput]
+	password: String
+}
+input CreditCardInput {
+	cardNumber: String
+	cardBrand: String
+	expiresSoon: Boolean
+	expirationMonth: Int
+	expirationYear: Int
+	firstDigits: String
+	lastDigits: String
+	maskedNumber: String
+	cardHolderName: String
+	creditCardBillingAddress: AddressInput
+}
+input AddressInput {
+	street: String
+	province: String
+	city: String
+	zipCode: String
+	country: String
+	countryCode: String
+	provinceCode: String
+}
+input SubscribedTopicInput {
+	subscribedTopic: TopicInput
+	subscribedAt: String
+	description: String
+}
+input TopicInput {
+	name: String
+	tags: [String]
+	topicCoverImage: ImageInput
+}
+input ImageInput {
+	metadata: ImageMetaInput
+	blobUrl: String
+	altText: String
+}
+input ImageMetaInput {
+	width: Int
+	height: Int
+	redData: String
+	greenData: String
+	blueData: String
+}

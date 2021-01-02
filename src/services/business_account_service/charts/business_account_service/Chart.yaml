@@ -1,0 +1,12 @@
+apiVersion: v1
+version: 5.1.1
+appVersion: 5.1.1
+name: business_account_service
+engine: gotpl
+description: Business Account Service Helm chart for Kubernetes
+home: https://github.com/BlackspaceInc/BlackspacePlatform/src/services
+maintainers:
+- email: business_account_service@users.noreply.github.com
+  name: Yoan Yomba
+sources:
+- https://github.com/BlackspaceInc/BlackspacePlatform

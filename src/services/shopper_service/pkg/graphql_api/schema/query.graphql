@@ -1,0 +1,36 @@
+interface Response {
+	message: String
+	code: Int
+	status: Boolean
+}
+
+type ShopperAccountResponse implements Response {
+	message: String
+	code: Int
+	status: Boolean
+	account: ShopperAccount
+}
+
+type OperationResponse implements Response {
+	message: String
+	code: Int
+	status: Boolean
+}
+
+
+type ShopperAccountsResponse implements Response {
+	message: String
+	code: Int
+	status: Boolean
+	account: [ShopperAccount!]
+}
+
+type Query {
+	# gets shopper account by id
+	GetShopperAccount(id: Int): ShopperAccountResponse
+	# gets shopper accounts based on limit
+	GetShopperAccounts(limit: Int): ShopperAccountsResponse
+	# gets shopper accounts based on param
+	GetShopperAccountsSubscribedToTopic(topic: SubscribedTopicInput): ShopperAccountsResponse
+}
+

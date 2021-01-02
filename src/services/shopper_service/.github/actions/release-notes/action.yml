@@ -1,0 +1,9 @@
+name: 'github-release-notes'
+description: 'A GitHub Action to run github-release-notes commands'
+author: 'Yoan Yomba, Vic Amupitan, Samira, Cameron Burford'
+branding:
+  icon: 'command'
+  color: 'blue'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'

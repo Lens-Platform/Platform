@@ -1,0 +1,12 @@
+input GetBusinessAccountRequest {
+	id: Int
+}
+
+input GetBusinessAccountsRequest{
+	limit: Int
+}
+
+type Query {
+	getBusinessAccount(input: GetBusinessAccountRequest!): BusinessAccount!
+	getBusinessAccounts(limit: GetBusinessAccountsRequest!): [BusinessAccount!]!
+}

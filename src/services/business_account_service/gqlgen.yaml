@@ -1,0 +1,88 @@
+# Where are all the schema files located? globs are supported eg  src/**/*.graphqls
+schema:
+  - pkg/graphql_api/schema/*.graphql
+
+# Where should the generated server code go?
+exec:
+  filename: pkg/graphql_api/generated/generated.go
+  package: generated
+
+# Enable Apollo federation support
+federation:
+  filename: pkg/graphql_api/generated/federation.go
+  package: generated
+
+# Where should any generated model go?
+model:
+  filename: pkg/graphql_api/proto/models_gen.go
+  package: proto
+
+# Where should the resolver implementations go?
+resolver:
+  dir: ./pkg/graphql_api
+  layout: follow-schema
+  package: graphql_api
+  type: Resolver  # what's the resolver root implementation type called?
+
+# Optional, turns on binding to field names by tag provided
+struct_tag: json
+
+# Optional, set to true if you prefer []Thing over []*Thing
+omit_slice_element_pointers: false
+
+# Optional, set to speed up generation time by not performing a final validation pass
+skip_validation: true
+
+autobind:
+  - "/github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/graphql_api/model"
+
+# This section declares type mapping between the GraphQL and go type systems
+#
+# The first line in each type will be used as defaults for resolver arguments and
+# modelgen, the others will be allowed when binding to fields. Configure them to
+# your liking
+models:
+  BusinessAccount:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.BusinessAccount
+  BusinessAccountInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.BusinessAccount
+  PhoneNumberInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.PhoneNumber
+  MediaInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.Media
+  BusinessTypeInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.BusinessType
+  MerchantTypeInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.MerchantType
+  PaymentProcessingMethodsInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.PaymentProcessingMethods
+  ServicesManagedByBlackspaceInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.ServicesManagedByBlackspace
+  AddressInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.Address
+  TopicsInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.Topics
+  DateOfBirthInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.DateOfBirth
+  BusinessCategoryInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.BusinessCategory
+  BusinessSubCategoryInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.BusinessSubCategory
+  PaymentOptionsInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.PaymentOptions
+  PaymentMediumInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.PaymentMedium
+  PhoneTypeInput:
+    model: github.com/BlackspaceInc/BlackspacePlatform/src/services/business_account_service/pkg/graphql_api/model.PhoneType
+  ID:
+    model:
+      - github.com/99designs/gqlgen/graphql.ID
+      - github.com/99designs/gqlgen/graphql.Int
+      - github.com/99designs/gqlgen/graphql.Int64
+      - github.com/99designs/gqlgen/graphql.Int32
+  Int:
+    model:
+      - github.com/99designs/gqlgen/graphql.Int
+      - github.com/99designs/gqlgen/graphql.Int64
+      - github.com/99designs/gqlgen/graphql.Int32
+

@@ -1,0 +1,66 @@
+type ShopperAccount {
+  id: Int
+  firstName: String
+  lastName: String
+  email: String
+  username: String
+  phone: String
+  isActive: Boolean
+  acceptsMarketing: Boolean
+  acceptedMarketingAt: String
+  addresses: [Address]
+  tags: [String]
+  causes: [SubscribedTopic]
+  creditCard: CreditCard
+  subscribedTopics: [SubscribedTopic]
+  authnId: Int
+  password: String
+}
+type CreditCard {
+  id: Int
+  cardNumber: String
+  cardBrand: String
+  expiresSoon: Boolean
+  expirationMonth: Int
+  expirationYear: Int
+  firstDigits: String
+  lastDigits: String
+  maskedNumber: String
+  cardHolderName: String
+  creditCardBillingAddress: Address
+}
+type Address {
+  id: Int
+  street: String
+  province: String
+  city: String
+  zipCode: String
+  country: String
+  countryCode: String
+  provinceCode: String
+}
+type SubscribedTopic {
+  id: Int
+  subscribedTopic: Topic
+  subscribedAt: String
+  description: String
+}
+type Topic {
+  id: Int
+  name: String
+  tags: [String]
+  topicCoverImage: Image
+}
+type Image {
+  id: Int
+  metadata: ImageMeta
+  blobUrl: String
+  altText: String
+}
+type ImageMeta {
+  width: Int
+  height: Int
+  redData: String
+  greenData: String
+  blueData: String
+}

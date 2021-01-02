@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2beta10
+kind: Config
+build:
+  artifacts:
+    - image: business_account_service
+deploy:
+  helm:
+    releases:
+      - name: business_account_service
+        chartPath: charts/business_account_service
+        artifactOverrides:
+          image: business_account_service

@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: shopper_service-frontend
+  namespace: secure
+spec:
+  dnsNames:
+    - frontend
+    - frontend.secure
+    - frontend.secure.cluster.local
+    - localhost
+  secretName: shopper_service-frontend-tls
+  issuerRef:
+    name: self-signed
+    kind: ClusterIssuer

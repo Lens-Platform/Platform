@@ -1,0 +1,94 @@
+type Address {
+  Address: String
+  ApartmentUnit: String
+  ZipCode: String
+  City: String
+  State: String
+  birthdate: DateOfBirth
+}
+type DateOfBirth {
+  Month: String
+  Day: String
+  Year: String
+}
+enum ServicesManagedByBlackspace {
+  ItemCatalog
+  GiftCards
+  Discounts
+  MarketingCampaigns
+  LoyaltyProgram
+  FundingYourBusiness
+  Analytics
+}
+type PaymentProcessingMethods {
+  paymentOptions: [PaymentOptions]
+  medium: [PaymentMedium]
+}
+enum PaymentMedium {
+  MobilePhone
+  Tablet
+  Computer
+}
+enum PaymentOptions {
+  BrickAndMortar
+  OnTheGo
+  Online
+  ThroughInvoices
+}
+type BusinessType {
+  category: BusinessCategory
+  subCategory: BusinessSubCategory
+}
+enum BusinessCategory {
+  BeautyAndPersonalCare
+  Tech
+  CharitiesEducationMembership
+  FoodAndDrink
+  HealthCareAndFitness
+  HomeAndRepair
+  LeisureAndEntertainment
+  ProfessionalServices
+  Retail
+  Transportation
+}
+enum BusinessSubCategory {
+  Art
+  Marketing
+  Travel
+  Interior_Design
+  Music
+  Technology
+  Food
+  Restaurants
+  Polictics
+  Health_And_Beauty
+  Design
+  Non_Profit
+  Jewelry
+  Gaming
+  Magazine
+  Photography
+  Fitenss
+  Consulting
+  Fashion
+  Services
+}
+enum MerchantType {
+  OnePersonBusiness
+  SoleProprietor
+  SideProject
+  CasualUse
+  LLCCorporation
+  Partnership
+  Charity
+  ReligiousOrganization
+}
+type PhoneNumber {
+  number: String
+  type: PhoneType
+}
+enum PhoneType {
+  MOBILE
+  HOME
+  WORK
+}
